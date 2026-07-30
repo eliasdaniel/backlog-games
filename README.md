@@ -9,5 +9,12 @@ estado, género y búsqueda por título.
 - MongoDB 
 - HTML, CSS y JavaScript 
 
+## Ramas
+* **`feature/agregar-readme`**: Mejorar el README
+* **`feature/filtro-plataforma`**: Agregar filtro por plataforma en `routes/juegos.js`
+* **`feature/estadisticas-genero`**: Agregar conteo por género en las stats
+* **`feature/validar-notas`**: Ajustar validación en `models/Juego.js`
+* **`hotfix/fix-mensaje-conexion`**: Corregir un texto en `server.js`
+
 ## Autor
 Elias Mateo - 2022-1922 — Programación III 
