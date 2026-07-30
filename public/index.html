@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GameLog — Mi Backlog</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo">🎮 GAMELOG</div>
+    <button class="btn-nuevo" onclick="abrirFormulario()">
+      <span>＋</span> Agregar juego
+    </button>
+  </header>
+
+  <!-- STATS -->
+  <div class="stats-bar" id="statsBar">
+    <div class="stat">
+      <span class="stat-label">Total</span>
+      <span class="stat-value" id="statTotal">0</span>
+    </div>
+    <div class="stat">
+      <span class="stat-dot dot-jugando"></span>
+      <span class="stat-label">Jugando</span>
+      <span class="stat-value" id="statJugando">0</span>
+    </div>
+    <div class="stat">
+      <span class="stat-dot dot-completado"></span>
+      <span class="stat-label">Completados</span>
+      <span class="stat-value" id="statCompletado">0</span>
+    </div>
+    <div class="stat">
+      <span class="stat-dot dot-pendiente"></span>
+      <span class="stat-label">Pendientes</span>
+      <span class="stat-value" id="statPendiente">0</span>
+    </div>
+    <div class="stat">
+      <span>⭐</span>
+      <span class="stat-label">Promedio</span>
+      <span class="stat-value" id="statPromedio">—</span>
+    </div>
+  </div>
+
+  <!-- FILTROS -->
+  <div class="filtros">
+    <input type="text" id="busqueda" placeholder="🔍 Buscar juego..." oninput="filtrar()" />
+    <select id="filtroEstado" onchange="filtrar()">
+      <option value="Todos">Todos los estados</option>
+      <option value="Pendiente">Pendiente</option>
+      <option value="Jugando">Jugando</option>
+      <option value="Completado">Completado</option>
+      <option value="Abandonado">Abandonado</option>
+    </select>
+    <select id="filtroGenero" onchange="filtrar()">
+      <option value="Todos">Todos los géneros</option>
+      <option>Acción</option><option>Aventura</option><option>RPG</option>
+      <option>Estrategia</option><option>Deportes</option><option>Terror</option>
+      <option>Plataformas</option><option>Simulación</option><option>Puzzle</option>
+      <option>Shooter</option><option>Pelea</option><option>Otro</option>
+    </select>
+  </div>
+
+  <!-- GRID DE JUEGOS -->
+  <div class="grid" id="grid">
+    <div class="loading"><div class="spinner"></div></div>
+  </div>
+
+  <!-- ===================== MODAL FORMULARIO ===================== -->
+  <div class="overlay" id="overlayForm">
+    <div class="modal">
+      <div class="modal-header">
+        <h2 class="modal-title" id="formTitulo">NUEVO JUEGO</h2>
+        <button class="btn-close" onclick="cerrarForm()">✕</button>
+      </div>
+
+      <div class="form-group">
+        <label>Título *</label>
+        <input type="text" id="fTitulo" placeholder="Ej. The Witcher 3" minlength="2" required />
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Género *</label>
+          <select id="fGenero">
+            <option value="">Seleccionar...</option>
+            <option>Acción</option><option>Aventura</option><option>RPG</option>
+            <option>Estrategia</option><option>Deportes</option><option>Terror</option>
+            <option>Plataformas</option><option>Simulación</option><option>Puzzle</option>
+            <option>Shooter</option><option>Pelea</option><option>Otro</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Plataforma *</label>
+          <select id="fPlataforma">
+            <option value="">Seleccionar...</option>
+            <option>PC</option><option>PlayStation 5</option><option>PlayStation 4</option>
+            <option>Xbox Series X</option><option>Xbox One</option>
+            <option>Nintendo Switch</option><option>Móvil</option><option>Otra</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Estado</label>
+          <select id="fEstado">
+            <option value="Pendiente">Pendiente</option>
+            <option value="Jugando">Jugando</option>
+            <option value="Completado">Completado</option>
+            <option value="Abandonado">Abandonado</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Calificación (0–10)</label>
+          <input type="number" id="fCalificacion" min="0" max="10" step="0.5" placeholder="Ej. 8.5" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Notas personales</label>
+        <textarea id="fNotas" placeholder="Comentarios, impresiones, etc..." maxlength="500"></textarea>
+      </div>
+
+      <div class="form-actions">
+        <button class="btn-cancel" onclick="cerrarForm()">Cancelar</button>
+        <button class="btn-save" onclick="guardarJuego()">Guardar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== MODAL DETALLE ===================== -->
+  <div class="overlay" id="overlayDetalle">
+    <div class="modal">
+      <div class="modal-header">
+        <h2 class="modal-title">DETALLE</h2>
+        <button class="btn-close" onclick="cerrarDetalle()">✕</button>
+      </div>
+      <div id="detalleContenido"></div>
+      <div class="form-actions" style="margin-top:1.5rem">
+        <button class="btn-cancel" onclick="cerrarDetalle()">Cerrar</button>
+        <button class="btn-save" onclick="editarDesdeDetalle()">✏️ Editar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== MODAL CONFIRMAR ELIMINAR ===================== -->
+  <div class="overlay" id="overlayConfirm">
+    <div class="modal" style="max-width:400px">
+      <div class="modal-header">
+        <h2 class="modal-title">ELIMINAR</h2>
+        <button class="btn-close" onclick="cerrarConfirm()">✕</button>
+      </div>
+      <p class="confirm-text">
+        ¿Estás seguro de que quieres eliminar <strong id="confirmNombre"></strong>?
+        Esta acción no se puede deshacer.
+      </p>
+      <div class="form-actions">
+        <button class="btn-cancel" onclick="cerrarConfirm()">Cancelar</button>
+        <button class="btn-delete-confirm" onclick="confirmarEliminar()">Sí, eliminar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast">
+    <span class="toast-icon" id="toastIcon"></span>
+    <span id="toastMsg"></span>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
