@@ -24,5 +24,9 @@ conteo por estado, conteo por género y calificación promedio.
 La lista de juegos se puede filtrar por estado, género, plataforma
 y búsqueda por título.
 
+## Validaciones
+La calificación solo acepta valores entre 0 y 10, con mensajes
+de error personalizados.
+
 ## Autor
 Elias Mateo - 2022-1922 — Programación III 
