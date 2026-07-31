@@ -19,12 +19,15 @@ router.get('/', async (req, res) => {
         const porEstado = await Juego.aggregate([
             { $group: { _id: '$estado', count: { $sum: 1 } } }
         ]);
+        const porGenero = await Juego.aggregate([
+            { $group: { _id: '$genero', count: { $sum: 1 } } }
+        ]);
         const calificados = await Juego.find({ calificacion: { $ne: null } });
         const promedio = calificados.length
             ? (calificados.reduce((s, j) => s + j.calificacion, 0) / calificados.length).toFixed(1)
             : null;
 
-        res.json({ juegos, stats: { total, porEstado, promedio } });
+        res.json({ juegos, stats: { total, porEstado, porGenero, promedio } });
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
