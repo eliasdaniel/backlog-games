@@ -5,7 +5,7 @@ const Juego = require('../models/Juego');
 // GET /api/juegos — 
 router.get('/', async (req, res) => {
     try {
-        const { estado, genero, busqueda } = req.query;
+        const { estado, genero, plataforma, busqueda } = req.query;
         let filtro = {};
 
         if (estado && estado !== 'Todos') filtro.estado = estado;
