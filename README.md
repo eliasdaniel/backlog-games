@@ -20,5 +20,9 @@ estado, género y búsqueda por título.
 El endpoint principal devuelve estadísticas: total de juegos,
 conteo por estado, conteo por género y calificación promedio.
 
+## Filtros disponibles
+La lista de juegos se puede filtrar por estado, género, plataforma
+y búsqueda por título.
+
 ## Autor
 Elias Mateo - 2022-1922 — Programación III 
