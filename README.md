@@ -16,5 +16,9 @@ estado, género y búsqueda por título.
 * **`feature/validar-notas`**: Ajustar validación en `models/Juego.js`
 * **`hotfix/fix-mensaje-conexion`**: Corregir un texto en `server.js`
 
+## Filtros disponibles
+La lista de juegos se puede filtrar por estado, género, plataforma
+y búsqueda por título.
+
 ## Autor
 Elias Mateo - 2022-1922 — Programación III 
