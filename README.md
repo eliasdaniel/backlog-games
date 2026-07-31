@@ -28,5 +28,8 @@ y búsqueda por título.
 La calificación solo acepta valores entre 0 y 10, con mensajes
 de error personalizados.
 
+## Notas
+Corrección de un comentario y descripción de conexión a la base de datos.
+
 ## Autor
 Elias Mateo - 2022-1922 — Programación III 

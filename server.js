@@ -19,7 +19,7 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// ConexiOn a MongoDB
+// Conexion a MongoDB
 mongoose.connect(process.env.MONGODB_URI)
   .then(() => {
     console.log('✅ Conectado a MongoDB');
@@ -29,6 +29,6 @@ mongoose.connect(process.env.MONGODB_URI)
     });
   })
   .catch(err => {
-    console.error('❌ Error al conectar a MongoDB:', err.message);
+    console.error('❌ Error al conectar a la Base de Datos MongoDB:', err.message);
     process.exit(1);
   });
