@@ -16,6 +16,10 @@ estado, género y búsqueda por título.
 * **`feature/validar-notas`**: Ajustar validación en `models/Juego.js`
 * **`hotfix/fix-mensaje-conexion`**: Corregir un texto en `server.js`
 
+## Estadísticas
+El endpoint principal devuelve estadísticas: total de juegos,
+conteo por estado, conteo por género y calificación promedio.
+
 ## Filtros disponibles
 La lista de juegos se puede filtrar por estado, género, plataforma
 y búsqueda por título.
