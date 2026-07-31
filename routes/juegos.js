@@ -10,6 +10,7 @@ router.get('/', async (req, res) => {
 
         if (estado && estado !== 'Todos') filtro.estado = estado;
         if (genero && genero !== 'Todos') filtro.genero = genero;
+        if (plataforma && plataforma !== 'Todas') filtro.plataforma = plataforma;
         if (busqueda) filtro.titulo = { $regex: busqueda, $options: 'i' };
 
         const juegos = await Juego.find(filtro).sort({ createdAt: -1 });
