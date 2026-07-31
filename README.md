@@ -4,6 +4,11 @@ CRUD para gestionar mi backlog personal de videojuegos.
 Permite agregar, listar, editar y eliminar juegos, con filtros por
 estado, género y búsqueda por título.
 
+## Inicializar Proyecto
+- Instala las dependencias `npm install`
+- Arranca el servidor `npm start`
+- Servidor corriendo en `http://localhost:3000`
+
 ## Tecnologías
 - Node.js + Express
 - MongoDB 
