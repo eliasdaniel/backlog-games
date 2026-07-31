@@ -25,8 +25,8 @@ const juegoSchema = new mongoose.Schema({
     },
     calificacion: {
         type: Number,
-        min: 0,
-        max: 10,
+        min: [0, 'La calificación mínima es 0'],
+        max: [10, 'La calificación máxima es 10'],
         default: null
     },
     notas: {
